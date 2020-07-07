@@ -1,21 +1,16 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect, Fragment, useContext } from 'react';
 import Spinner from '../layout/spinner';
-import PropTypes from 'prop-types';
 import Repos from '../repos/Repos';
 import { Link } from 'react-router-dom';
+import GithubContext from '../../context/github/githubContext';
 
-const User = ({ user, loading, getUser, getUserRepos, repos, match }) => {
-  /// replaces the componentDidMount()
+const User = ({ match }) => {
+  const githubContext = useContext(GithubContext);
+  const { user, loading, getUser, getUserRepos, repos } = githubContext;
+
   useEffect(() => {
-    // the params.login is = to the :login in the App.js route path
     getUser(match.params.login);
     getUserRepos(match.params.login);
-
-    // to stop the request loop you need to put [] to mimic the funcionality of componentDidMount()
-    // the second param of is a special condition on when we want this function to run.
-    // e.g if you put [repos], if the repos change then this funct will run.
-    // we will leave it blank since we only want to run it once
-
     // eslint-disable-next-line
   }, []);
 
@@ -103,14 +98,6 @@ const User = ({ user, loading, getUser, getUserRepos, repos, match }) => {
       <Repos repos={repos} />
     </Fragment>
   );
-};
-
-User.propTypes = {
-  loading: PropTypes.bool,
-  user: PropTypes.object.isRequired,
-  getUser: PropTypes.func.isRequired,
-  repos: PropTypes.array.isRequired,
-  getUserRepos: PropTypes.func.isRequired,
 };
 
 export default User;

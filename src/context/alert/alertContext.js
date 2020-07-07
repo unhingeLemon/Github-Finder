@@ -1,8 +1,8 @@
 import { createContext } from 'react';
 
-const githubContext = createContext();
+const alertContext = createContext();
 
-export default githubContext;
+export default alertContext;
 
 // DIFFERENT COMPONENTS WILL CALL THE CONTEXT >>
 // STATE >> REDUCER >> GIVE THE DATA TO THE COMPONENTS
