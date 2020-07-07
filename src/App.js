@@ -9,6 +9,8 @@ import About from './components/pages/About';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 
+import GithubState from './context/github';
+
 const App = () => {
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState({});
